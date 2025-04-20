@@ -1,0 +1,144 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #80b8ef;
+    color: #1f2937;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background-color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  
+  .button-primary {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .button-primary:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .button-secondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+  }
+  
+  .button-secondary:hover {
+    background-color: #d1d5db;
+  }
+  
+  /* Section Titles */
+  section {
+    padding: 3rem 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Lists */
+  ul, ol {
+    padding-left: 1.25rem;
+    max-width: 700px;
+    margin: auto;
+  }
+  
+  li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  thead {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  th, td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+  }
+  
+  /* Contact Form */
+  form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  input, textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+  }
+  
+  button[type="submit"] {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition:  background 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #1d4ed8;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    padding: 2rem;}
+
+    #aboutImage {
+      width: 50%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }

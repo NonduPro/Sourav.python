@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Face Recognition for Events</title>
+  <meta name="description" content="Fast, secure face recognition system for event check-ins.">
+  <meta name="keywords" content="face recognition, event check-in, AI entry system">
+  <meta name="author" content="Your Company Name">
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition duration-300">
+
+  <!-- Navbar -->
+  <nav class="bg-white dark:bg-gray-800 shadow fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <span class="text-xl font-bold text-blue-600">FaceAuthentication</span>
+      <div class="space-x-6 hidden md:flex">
+        <a href="#about" class="hover:text-blue-600">About</a>
+        <a href="#how" class="hover:text-blue-600">How It Works</a>
+        <a href="#pricing" class="hover:text-blue-600">Pricing</a>
+        <a href="#contact" class="hover:text-blue-600">Contact</a>
+        <button id="darkToggle" class="ml-4 bg-gray-200 px-3 py-1 rounded text-sm">🌓</button>
+      </div>
+      <button id="menuToggle" class="md:hidden text-blue-600 text-2xl">☰</button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2">
+      <a href="#about" class="block hover:text-blue-600">About</a>
+      <a href="#how" class="block hover:text-blue-600">How It Works</a>
+      <a href="#pricing" class="block hover:text-blue-600">Pricing</a>
+      <a href="#contact" class="block hover:text-blue-600">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-28 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-6 py-16 text-center" data-aos="zoom-in">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Revolutionize Event Entry with Face Recognition</h1>
+    <p class="text-lg md:text-xl mb-6">Fast, secure, and contactless check-ins powered by advanced AI.</p>
+    <a href="#pricing" class="inline-flex items-center bg-white text-blue-600 px-6 py-2 rounded hover:bg-gray-100 transition space-x-2">
+      <span>Buy Now </span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+      </svg>
+    </a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="p-10 max-w-6xl mx-auto" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-8 text-center">Why Our Face Recognition Model?</h2>
+    <div class="grid md:grid-cols-2 gap-6 text-lg">
+      <div class="space-y-4">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transform hover:scale-105 transition">
+          <h3 class="font-bold">🎯 Real-time face recognition with >98% accuracy</h3>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transform hover:scale-105 transition">
+          <h3 class="font-bold">🔐 Secure data handling & GDPR compliant</h3>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transform hover:scale-105 transition">
+          <h3 class="font-bold">⚙ Easy integration with your event system</h3>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transform hover:scale-105 transition">
+          <h3 class="font-bold">📱 Mobile, tablet & kiosk compatibility</h3>
+        </div>
+      </div>
+      <img src="imagee.jpg" alt="Face Recognition" class="rounded-lg shadow-md w-full h-64 object-cover md:h-80 lg:h-96" />
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how" class="bg-gray-100 dark:bg-gray-800 py-16 px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-8 text-center">How It Works</h2>
+    <ol class="list-decimal space-y-4 max-w-3xl mx-auto text-lg pl-6">
+      <li>Upload attendee list with photos</li>
+      <li>System trains & syncs to devices</li>
+      <li>Attendees scan faces at entrance</li>
+      <li>Automatic check-in with timestamp and ID</li>
+    </ol>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="p-10 max-w-6xl mx-auto" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-8 text-center">Simple, Transparent Pricing</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full table-auto border border-gray-300 rounded-lg">
+        <thead>
+          <tr class="bg-blue-600 text-white">
+            <th class="px-6 py-3 text-left">Plan</th>
+            <th class="px-6 py-3 text-left">Features</th>
+            <th class="px-6 py-3 text-left">Price</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white dark:bg-gray-700 dark:text-white">
+          <tr>
+            <td class="border px-6 py-4 font-semibold">Standard</td>
+            <td class="border px-6 py-4">Up to 500 attendees, 1 event, email support</td>
+            <td class="border px-6 py-4">999/-event</td>
+          </tr>
+          <tr class="bg-gray-50 dark:bg-gray-800">
+            <td class="border px-6 py-4 font-semibold">Pro</td>
+            <td class="border px-6 py-4">Up to 1000 attendees, multiple events, priority support</td>
+            <td class="border px-6 py-4">1499/-event</td>
+          </tr>
+          <tr>
+            <td class="border px-6 py-4 font-semibold">Enterprise</td>
+            <td class="border px-6 py-4">Unlimited attendees/events, API access, white-labeling</td>
+            <td class="border px-6 py-4">Contact Us</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Contact Section with Google Form -->
+  <section id="contact" class="bg-gray-100 dark:bg-gray-800 py-16 px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-8 text-center">Get in Touch</h2>
+
+    <div class="max-w-xl mx-auto space-y-5 text-center">
+      <p class="text-lg mb-4">Click the button below to open the message form:</p>
+      <button id="loadForm" class="bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-700 transition">
+        Send Message
+      </button>
+
+      <!-- Hidden Google Form -->
+      <div id="googleFormContainer" class="hidden mt-6">
+        <iframe 
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeUQ-w5SkIVLZeMIQ4yz24EFGbHBK4hKfyAFxtn34vBeDaJtA/viewform?embedded=true" 
+          width="100%" 
+          height="956" 
+          frameborder="0" 
+          marginheight="0" 
+          marginwidth="0" 
+          class="w-full rounded-lg shadow-lg"
+          loading="lazy">
+          Loading…
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll to Top -->
+  <button id="scrollTop" class="hidden fixed bottom-6 left-6 bg-blue-600 text-white p-3 rounded-full shadow-lg">↑</button>
+
+  <!-- Scripts -->
+  <script>
+    AOS.init();
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Scroll-to-top button
+    const scrollBtn = document.getElementById("scrollTop");
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle("hidden", window.scrollY < 300);
+    });
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Google Form show and scroll
+    document.getElementById("loadForm").addEventListener("click", () => {
+      const formContainer = document.getElementById("googleFormContainer");
+      formContainer.classList.remove("hidden");
+      document.getElementById("loadForm").classList.add("hidden");
+
+      formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  </script>
+</body>
+
+</html>

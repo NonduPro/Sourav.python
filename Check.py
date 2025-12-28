@@ -17,7 +17,7 @@ with open("supabase_admin.json") as f:
 
 SUPABASE_URL = config["project_url"]
 SUPABASE_SERVICE_KEY = config["service_role_key"]
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)  
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)                                       
 print("✅ Supabase client initialized!")
 
 # Create unauthorized folder if it doesn't exist

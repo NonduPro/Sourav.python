@@ -10,7 +10,7 @@ with open("supabase_admin.json") as f:
 SUPABASE_URL = config["project_url"]
 SUPABASE_SERVICE_KEY = config["service_role_key"]
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY) 
-print("✅ Supabase client initialized successfully!")
+print("✅ Supabase client initialized successfully!") 
 
 #  Define student records
 student_data = [
@@ -19,21 +19,29 @@ student_data = [
         "name": "Sourav Nandi",
         "technical_department": "Robotics",
         "total_grants": 0,
-        "last_granting_time": "2025-04-19 00:54:34"   
+        "last_granting_time": "2025-11-30 00:33:33"                          
     },
     {
         "id": "852741",
         "name": "Avay Mallick",
         "technical_department": "Robotics",
         "total_grants": 0,
-        "last_granting_time": "2025-04-19 00:54:59" 
+        "last_granting_time": "2025-09-28 00:54:49" 
     },
     {
         "id": "963852",
         "name": "Vishal Prasad Gupta",
         "technical_department": "Robotics",
         "total_grants": 0,
-        "last_granting_time": "2025-04-19 00:54:51"
+        "last_granting_time": "2025-09-28 00:54:51"
+    },
+    {
+
+        "id": "123456",
+        "name": "Shyamal Nandi",
+        "technical_department": "Robotics",
+        "total_grants": 0,
+        "last_granting_time": "2025-09-28 00:11:11"
     },
 ]
 

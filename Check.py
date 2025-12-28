@@ -1,4 +1,4 @@
-# 📦 Import required libraries  
+# Import required libraries  
 import cv2
 import os
 import pickle
@@ -11,20 +11,20 @@ import time
 import requests
 from datetime import datetime
 
-# 🔐 Load Supabase credentials from JSON file            
+# Load Supabase credentials from JSON file            
 with open("supabase_admin.json") as f:
     config = json.load(f)
 
 SUPABASE_URL = config["project_url"]
 SUPABASE_SERVICE_KEY = config["service_role_key"]
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)  
 print("✅ Supabase client initialized!")
 
-# 📁 Create unauthorized folder if it doesn't exist
+# Create unauthorized folder if it doesn't exist
 if not os.path.exists("unauthorized"):
     os.makedirs("unauthorized")
 
-# 🔁 Function to update student attendance (grant count)
+# Function to update student attendance (grant count)
 def update_attendance(student_id):
     try:
         current_data = supabase.table("students").select("total_grants").eq("id", student_id).single().execute()
@@ -42,7 +42,7 @@ def update_attendance(student_id):
         print(f"❌ Error updating grants: {e}")
         return "error"
 
-# 🖼️ Load student image from local or URL
+# Load student image from local or URL
 def load_student_image(student):
     local_path = os.path.join("Images", f"{student['id']}.png")
     if os.path.exists(local_path):
@@ -56,30 +56,30 @@ def load_student_image(student):
             print(f"⚠ Failed to fetch image from URL for {student['id']}: {e}")
     return np.zeros((216, 216, 3), dtype=np.uint8)  # Return blank image if unavailable
 
-# 📝 Draw status text inside webcam feed
+# Draw status text inside webcam feed
 def draw_status_text_on_webcam(img, status, color):
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(img, f"Status: {status}", (10, 470), font, 0.8, color, 2, cv2.LINE_AA)
 
-# 📷 Initialize webcam
+# Initialize webcam
 cap = cv2.VideoCapture(0)
 cap.set(3, 640)  # Width
 cap.set(4, 480)  # Height
 
-# 🖼️ Load UI elements
+# Load UI elements
 imgBackground = cv2.imread('Resources/background.png')
 folderModePath = 'Resources/Modes'
 imgModeList = [cv2.imread(os.path.join(folderModePath, path)) for path in os.listdir(folderModePath)]
 mode_active = cv2.imread(os.path.join(folderModePath, 'active.png'))
 marked_screen = cv2.imread(os.path.join(folderModePath, 'marked_screen.png'))
 
-# 🧠 Load face encodings
+# Load face encodings
 print("Loading Encode File...")
 with open('EncodeFile.p', 'rb') as file:
     encodeListKnown, studentIds = pickle.load(file)
 print("✅ Encode File Loaded")
 
-# 🧩 Initialize variables for app logic
+# Initialize variables for app logic
 modeType = 0
 counter = 0
 id = -1
@@ -92,7 +92,7 @@ attendance_delay = 10  # Minimum time between re-grants per student
 detected_students = set()
 student = None
 
-# ⏱️ Logic control flags
+# Logic control flags
 last_action_time = 0
 action_cooldown = 5  # Seconds between actions
 unauth_frame_count = 0
@@ -105,7 +105,7 @@ unknown_distance_threshold = 0.7
 
 show_marked_screen = False  # UI flag
 
-# 📡 Start processing webcam frames
+# Start processing webcam frames
 while True:
     success, img = cap.read()
     if not success:
@@ -127,25 +127,25 @@ while True:
     status_message = "Scanning..."
     status_color = (0, 255, 255)
 
-    # 🧊 Show marked screen during cooldown
+    # Show marked screen during cooldown
     if current_time - last_action_time < action_cooldown and show_marked_screen:
         imgBackground[44:44 + 633, 808:808 + 414] = marked_screen
 
-    # 😐 No face detected
+    # No face detected
     elif len(faceCurFrame) == 0:
         imgBackground[44:44 + 633, 808:808 + 414] = mode_active
         student = None
         unknown_face_detected = False
         unauth_frame_count = 0
 
-    # 🔄 Cooldown in progress
+    # Cooldown in progress
     elif current_time - last_action_time < action_cooldown:
         status_message = "Processing..."
         status_color = (200, 200, 0)
         if show_marked_screen:
             imgBackground[44:44 + 633, 808:808 + 414] = marked_screen
 
-    # ✅ Face detected, process recognition
+    # Face detected, process recognition
     else:
         imgBackground[44:44 + 633, 808:808 + 414] = imgModeList[modeType]
         show_marked_screen = False
@@ -159,7 +159,7 @@ while True:
             bbox = 55 + x1, 162 + y1, x2 - x1, y2 - y1
             imgBackground = cvzone.cornerRect(imgBackground, bbox, rt=0)
 
-            # 🧍‍♂️ Known face detected
+            # Known face detected
             if matchIndex != -1 and matches[matchIndex] and faceDis[matchIndex] < face_distance_threshold:
                 unknown_face_detected = False
                 unauth_frame_count = 0
@@ -183,7 +183,7 @@ while True:
                 counter = 1
                 last_action_time = time.time()
 
-            # 🚫 Unknown face confirmed
+            # Unknown face confirmed
             elif faceDis.size > 0 and faceDis[matchIndex] > unknown_distance_threshold:
                 if not unknown_face_detected:
                     unknown_face_detected = True
@@ -215,7 +215,7 @@ while True:
                     unknown_face_image = img[y1:y2, x1:x2]
                     unauth_frame_count = 1
 
-    # 🧾 Display student info on UI if recognized
+    # Display student info on UI if recognized
     if counter != 0:
         if counter == 1:
             studentInfo = supabase.table("students").select("*").eq("id", id).single().execute()
@@ -237,18 +237,18 @@ while True:
             cv2.putText(imgBackground, str(student['name']), (808 + offset, 445), cv2.FONT_HERSHEY_COMPLEX, 1, (50, 50, 50), 1)
             imgBackground[175:175 + 216, 909:909 + 216] = imgStudent
 
-    # 🖍️ Draw final status
+    # Draw final status
     draw_status_text_on_webcam(imgBackground[162:162 + 480, 55:55 + 640], status_message, status_color)
 
-    # 📺 Show result
+    # Show result
     cv2.imshow("Face Attendance", imgBackground)
 
     time.sleep(0.05)  # Delay for ~20 FPS                
 
-    # 🔚 Exit on 'q'
+    # Exit on 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):
         print("🛑 Stopping the webcam...")
         break
 
 cap.release()
-cv2.destroyAllWindows()
+cv2.destroyAllWindows()                                                     
